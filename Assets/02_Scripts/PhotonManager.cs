@@ -8,4 +8,27 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private const string version = "1.0";
     // 유저명
     [SerializeField] private string nickName = "Zack";
+
+    private void Awake()
+    {
+        // 게임버전 설정
+        PhotonNetwork.GameVersion = version;
+        // 유저명 설정
+        PhotonNetwork.NickName = nickName;
+        // 방장이 씬을 로딩했을 때 다른 유저들에 자동으로 씬을 로딩 시켜주는 옵션
+        PhotonNetwork.AutomaticallySyncScene = true;
+
+        // 포톤 서버에 접속 요청
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
+    // 포톤 서버에 접속되었을 때 호출되는 콜백(Callback)
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("서버 접속 완료");
+        // Lobby 접속 요청
+        PhotonNetwork.JoinLobby();
+    }
+
+
 }
