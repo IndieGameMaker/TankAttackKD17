@@ -3,7 +3,7 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     private Transform tr;
-    [SerializeField] private float turnSpeed = 500.0f;
+    [SerializeField] private float turnSpeed = 50.0f;
 
     void Start()
     {
