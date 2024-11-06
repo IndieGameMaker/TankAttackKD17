@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -8,6 +9,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private const string version = "1.0";
     // 유저명
     [SerializeField] private string nickName = "Zack";
+
+    [SerializeField] private Button btn;
 
     private void Awake()
     {

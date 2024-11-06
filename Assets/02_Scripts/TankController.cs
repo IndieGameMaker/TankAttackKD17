@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TankController : MonoBehaviour
@@ -11,10 +12,19 @@ public class TankController : MonoBehaviour
     private float v => Input.GetAxis("Vertical");
     private float h => Input.GetAxis("Horizontal");
 
+    /*  goes to
+    (파라메터) => 문장;
+    */
+
+
+
     void Start()
     {
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
+
+        // Func<int, int, int> add = (a, b) => a + b;
+        // int sum = add(2, 3);
     }
 
     void Update()
