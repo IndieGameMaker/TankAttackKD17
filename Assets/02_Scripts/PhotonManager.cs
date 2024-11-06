@@ -50,5 +50,19 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             IsOpen = true,
             IsVisible = true
         };
+        // 룸 생성 요청
+        PhotonNetwork.CreateRoom("MyRoom", ro);
+    }
+
+    // 방생성 완료 콜백
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("방 생성 완료");
+    }
+
+    // 방 입장 완료 콜백
+    public override void OnJoinedRoom()
+    {
+        Debug.Log($"방 입장 완료 : {PhotonNetwork.CurrentRoom.Name}");
     }
 }
