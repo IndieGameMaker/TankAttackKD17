@@ -4,15 +4,8 @@ using Photon.Realtime;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    // 게임 버전 1.0 , 1.1
+    [SerializeField] private const string version = "1.0";
+    // 유저명
+    [SerializeField] private string nickName = "Zack";
 }
