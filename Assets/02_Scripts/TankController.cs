@@ -17,9 +17,9 @@ public class TankController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        tr.Translate(Vector3.forward * Time.deltaTime * v * moveSpeed);
+        tr.Rotate(Vector3.up * Time.deltaTime * h * turnSpeed);
     }
 }
