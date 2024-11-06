@@ -10,8 +10,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // 유저명
     [SerializeField] private string nickName = "Zack";
 
-    [SerializeField] private Button btn;
-
     private void Awake()
     {
         // 게임버전 설정
@@ -67,6 +65,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log($"방 입장 완료 : {PhotonNetwork.CurrentRoom.Name}");
+
+        PhotonNetwork.Instantiate("Tank", new Vector3(0, 5.0f, 0), Quaternion.identity, 0);
+
+
         // 전투 씬으로 이동처리
     }
 }
