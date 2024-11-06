@@ -8,4 +8,9 @@ public class Cannon : MonoBehaviour
     {
         GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * force);
     }
+
+    void OnCollisionEnter()
+    {
+        Destroy(this.gameObject);
+    }
 }
