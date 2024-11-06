@@ -42,5 +42,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log($"방입장 실패 : {returnCode} : {message}");
+
+        // 룸 옵션 설정
+        RoomOptions ro = new RoomOptions
+        {
+            MaxPlayers = 20,
+            IsOpen = true,
+            IsVisible = true
+        };
     }
 }
