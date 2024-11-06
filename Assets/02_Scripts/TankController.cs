@@ -2,12 +2,16 @@
 
 using System;
 using UnityEngine;
+using Photon.Pun;
+using Unity.Cinemachine;
 
 public class TankController : MonoBehaviour
 {
     private Transform tr;
     private Rigidbody rb;
+    private PhotonView pv;
     private new AudioSource audio;
+    private CinemachineCamera cinemachineCamera;
 
     [SerializeField] private float moveSpeed = 10.0f;
     [SerializeField] private float turnSpeed = 100.0f;
@@ -27,7 +31,14 @@ public class TankController : MonoBehaviour
     {
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
+        pv = GetComponent<PhotonView>();
         audio = GetComponent<AudioSource>();
+        cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+
+        if (pv.IsMine)
+        {
+            cinemachineCamera.Target.TrackingTarget = tr;
+        }
 
         // Func<int, int, int> add = (a, b) => a + b;
         // int sum = add(2, 3);
@@ -35,6 +46,8 @@ public class TankController : MonoBehaviour
 
     void Update()
     {
+        if (pv.IsMine == false) return;
+
         tr.Translate(Vector3.forward * Time.deltaTime * v * moveSpeed);
         tr.Rotate(Vector3.up * Time.deltaTime * h * turnSpeed);
 

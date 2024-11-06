@@ -628,7 +628,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickName: Zack
-  btn: {fileID: 0}
 --- !u!4 &1429605954
 Transform:
   m_ObjectHideFlags: 0
