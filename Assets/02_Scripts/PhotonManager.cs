@@ -64,5 +64,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log($"방 입장 완료 : {PhotonNetwork.CurrentRoom.Name}");
+        // 전투 씬으로 이동처리
     }
 }
