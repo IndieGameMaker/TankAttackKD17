@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class TurretController : MonoBehaviour
@@ -8,6 +9,8 @@ public class TurretController : MonoBehaviour
     void Start()
     {
         tr = GetComponent<Transform>();
+
+        this.enabled = tr.root.GetComponent<PhotonView>().IsMine;
     }
 
     void Update()

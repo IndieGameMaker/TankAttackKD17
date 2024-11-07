@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class CannonController : MonoBehaviour
@@ -9,6 +10,7 @@ public class CannonController : MonoBehaviour
     void Start()
     {
         tr = transform;
+        this.enabled = tr.root.GetComponent<PhotonView>().IsMine;
     }
 
     // Update is called once per frame
