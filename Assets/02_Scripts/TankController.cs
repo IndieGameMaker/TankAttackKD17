@@ -11,6 +11,7 @@ using Photon.Pun;
 using Unity.Cinemachine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class TankController : MonoBehaviour
 {
@@ -36,9 +37,7 @@ public class TankController : MonoBehaviour
     private float h => Input.GetAxis("Horizontal");
     private bool isFire => Input.GetMouseButtonDown(0);
 
-    /*  goes to
-    (파라메터) => 문장;
-    */
+    private List<Renderer> renderers = new List<Renderer>();
 
     void Start()
     {
@@ -48,6 +47,8 @@ public class TankController : MonoBehaviour
         audio = GetComponent<AudioSource>();
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
         nickNameText = transform.Find("Canvas/Panel/Text - NickName").GetComponent<TMP_Text>();
+
+        GetComponentsInChildren<Renderer>(renderers);
 
         rb.isKinematic = !pv.IsMine;
 
@@ -87,6 +88,23 @@ public class TankController : MonoBehaviour
         {
             currHp -= 20;
             hpBar.fillAmount = (float)currHp / (float)initHp;
+
+            if (currHp <= 0)
+            {
+                TankDestroy();
+            }
         }
+    }
+
+    private void TankDestroy()
+    {
+
+    }
+
+
+
+    private void SetVisibleTank(bool isVisible)
+    {
+
     }
 }
