@@ -10,6 +10,7 @@ using UnityEngine;
 using Photon.Pun;
 using Unity.Cinemachine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TankController : MonoBehaviour
 {
@@ -24,8 +25,12 @@ public class TankController : MonoBehaviour
     [SerializeField] private GameObject cannonPrefab;
     [SerializeField] private Transform firePos;
     [SerializeField] private AudioClip fireSfx;
+    [SerializeField] private Image hpBar;
 
     private TMP_Text nickNameText;
+
+    private int initHp = 100;
+    private int currHp = 100;
 
     private float v => Input.GetAxis("Vertical");
     private float h => Input.GetAxis("Horizontal");
@@ -74,5 +79,14 @@ public class TankController : MonoBehaviour
     {
         Instantiate(cannonPrefab, firePos.position, firePos.rotation);
         audio?.PlayOneShot(fireSfx, 0.8f);
+    }
+
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.CompareTag("CANNON"))
+        {
+            currHp -= 20;
+            hpBar.fillAmount = (float)currHp / (float)initHp;
+        }
     }
 }
