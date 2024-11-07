@@ -109,8 +109,20 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
             // 새로 생성된 룸 , 변경된 경우 로직 처리
             // 처음 생성된 룸 (Dictionary 검색했을 때 결과가 없을 경우)
+            if (roomDict.ContainsKey(room.Name) == false)
+            {
+                // Room 프리팹 생성
+                var _room = Instantiate(roomPrefab, contentTr);
+                // 룸 속성을 설정
 
-            // 있을 경우 룸 정보를 변경
+                // 딕셔너리에 저장
+                roomDict.Add(room.Name, _room);
+            }
+            else
+            {
+                // 룸이 존재하는 경우 룸 정보를 변경
+
+            }
         }
     }
 
