@@ -39,6 +39,8 @@ public class TankController : MonoBehaviour
 
     private List<Renderer> renderers = new List<Renderer>();
 
+    private bool isDie = false;
+
     void Start()
     {
         tr = GetComponent<Transform>();
@@ -65,6 +67,8 @@ public class TankController : MonoBehaviour
     {
         if (pv.IsMine == false) return;
 
+        if (isDie) return;
+
         tr.Translate(Vector3.forward * Time.deltaTime * v * moveSpeed);
         tr.Rotate(Vector3.up * Time.deltaTime * h * turnSpeed);
 
@@ -84,6 +88,8 @@ public class TankController : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
+        if (isDie) return;
+
         if (coll.collider.CompareTag("CANNON"))
         {
             currHp -= 20;
@@ -98,6 +104,8 @@ public class TankController : MonoBehaviour
 
     private void TankDestroy()
     {
+        isDie = true;
+
         // 탱크 비활성화
         SetVisibleTank(false);
 
@@ -110,6 +118,7 @@ public class TankController : MonoBehaviour
         hpBar.fillAmount = 1.0f;
 
         SetVisibleTank(true);
+        isDie = false;
     }
 
 
@@ -119,5 +128,9 @@ public class TankController : MonoBehaviour
         {
             renderers[i].enabled = isVisible;
         }
+
+        //GetComponent<BoxCollider>().enabled = isVisible;
+
+        tr.GetComponentInChildren<Canvas>().enabled = isVisible;
     }
 }
