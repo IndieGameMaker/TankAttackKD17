@@ -40,6 +40,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         // 버튼 이벤트 연결
         loginButton.onClick.AddListener(() => OnLoginButtonClick());
+        makeRoomButton.onClick.AddListener(() => OnMakeRoomButtonClick());
     }
 
     private void SetNickName()
@@ -65,6 +66,24 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.NickName = nickName;
         PhotonNetwork.JoinRandomRoom();
+    }
+
+    private void OnMakeRoomButtonClick()
+    {
+        SetNickName();
+        if (string.IsNullOrEmpty(roomNameIF.text))
+        {
+            roomNameIF.text = $"ROOM_{Random.Range(0, 10000)}";
+        }
+
+        var roomOptions = new RoomOptions
+        {
+            MaxPlayers = 20,
+            IsOpen = true,
+            IsVisible = true
+        };
+        // 룸 생성
+        PhotonNetwork.CreateRoom(roomNameIF.text, roomOptions);
     }
     #endregion
 
