@@ -96,12 +96,21 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     #endregion
 
     #region 포톤콜백함수
+
+    // 룸 목록을 저장할 Dictionary 선언
+    private Dictionary<string, GameObject> roomDict = new Dictionary<string, GameObject>();
+
     // 룸 목록이 변경되면 호출되는 콜백
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (var room in roomList)
         {
             Debug.Log($"{room.Name} : {room.PlayerCount} / {room.MaxPlayers}");
+
+            // 새로 생성된 룸 , 변경된 경우 로직 처리
+            // 처음 생성된 룸 (Dictionary 검색했을 때 결과가 없을 경우)
+
+            // 있을 경우 룸 정보를 변경
         }
     }
 
