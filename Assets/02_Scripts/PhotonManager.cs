@@ -55,6 +55,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     #region UI 콜백 함수
     private void OnLoginButtonClick()
     {
+        SetNickName();
+
         PhotonNetwork.NickName = nickName;
         PhotonNetwork.JoinRandomRoom();
     }
