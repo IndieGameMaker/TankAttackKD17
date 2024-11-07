@@ -98,13 +98,26 @@ public class TankController : MonoBehaviour
 
     private void TankDestroy()
     {
+        // 탱크 비활성화
+        SetVisibleTank(false);
 
+        Invoke(nameof(RespawnTank), 3.0f);
     }
 
+    private void RespawnTank()
+    {
+        currHp = initHp;
+        hpBar.fillAmount = 1.0f;
+
+        SetVisibleTank(true);
+    }
 
 
     private void SetVisibleTank(bool isVisible)
     {
-
+        for (int i = 0; i < renderers.Count; i++)
+        {
+            renderers[i].enabled = isVisible;
+        }
     }
 }
