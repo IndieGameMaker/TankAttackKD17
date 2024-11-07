@@ -34,6 +34,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        // 저장된 닉네임 로드
+        nickName = PlayerPrefs.GetString("NICK_NAME", $"USER_{Random.Range(0, 1001):0000}");
+        nickNameIF.text = nickName;
+
         // 버튼 이벤트 연결
         loginButton.onClick.AddListener(() => OnLoginButtonClick());
     }
@@ -50,6 +54,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             nickName = nickNameIF.text;
         }
+
+        PlayerPrefs.SetString("NICK_NAME", nickName);
     }
 
     #region UI 콜백 함수
