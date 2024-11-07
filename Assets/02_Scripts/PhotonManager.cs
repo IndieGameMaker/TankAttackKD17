@@ -2,13 +2,22 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using TMPro;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     // 게임 버전 1.0 , 1.1
     [SerializeField] private const string version = "1.0";
     // 유저명
-    [SerializeField] private string nickName = "Zack";
+    private string nickName = "Zack";
+
+    [Header("UI")]
+    [SerializeField] private TMP_InputField nickNameIF;
+    [SerializeField] private TMP_InputField roomNameIF;
+
+    [Header("Button")]
+    [SerializeField] private Button loginButton;
+    [SerializeField] private Button makeRoomButton;
 
     private void Awake()
     {
