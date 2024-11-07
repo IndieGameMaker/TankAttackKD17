@@ -35,6 +35,8 @@ public class TankController : MonoBehaviour
         audio = GetComponent<AudioSource>();
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
 
+        rb.isKinematic = !pv.IsMine;
+
         if (pv.IsMine)
         {
             cinemachineCamera.Target.TrackingTarget = tr;
