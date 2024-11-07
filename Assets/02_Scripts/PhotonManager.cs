@@ -68,6 +68,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             nickName = nickNameIF.text;
         }
 
+        PhotonNetwork.NickName = nickName;
         PlayerPrefs.SetString("NICK_NAME", nickName);
     }
 
@@ -76,13 +77,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         SetNickName();
 
-        PhotonNetwork.NickName = nickName;
         PhotonNetwork.JoinRandomRoom();
     }
 
     private void OnMakeRoomButtonClick()
     {
         SetNickName();
+
         if (string.IsNullOrEmpty(roomNameIF.text))
         {
             roomNameIF.text = $"ROOM_{Random.Range(0, 10000)}";
