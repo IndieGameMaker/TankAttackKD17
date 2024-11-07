@@ -19,6 +19,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private Button loginButton;
     [SerializeField] private Button makeRoomButton;
 
+    [Header("Room List")]
+    [SerializeField] private GameObject roomPrefab;
+    [SerializeField] private Transform contentTr;
+
     private void Awake()
     {
         // 게임버전 설정
