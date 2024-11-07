@@ -127,7 +127,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 // Room 프리팹 생성
                 var _room = Instantiate(roomPrefab, contentTr);
                 // 룸 속성을 설정
-
+                _room.GetComponent<RoomData>().RoomInfo = room;
                 // 딕셔너리에 저장
                 roomDict.Add(room.Name, _room);
             }
