@@ -47,8 +47,7 @@ public class TankController : MonoBehaviour
             cinemachineCamera.Target.TrackingTarget = tr;
         }
 
-        // Func<int, int, int> add = (a, b) => a + b;
-        // int sum = add(2, 3);
+
     }
 
     void Update()

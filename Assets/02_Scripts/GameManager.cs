@@ -14,16 +14,20 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        PhotonNetwork.IsMessageQueueRunning = false;
     }
 
     IEnumerator Start()
     {
         exitButton.onClick.AddListener(() => OnExitButtonClick());
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         DisplayConnectInfo();
         CreateTank();
+
+        yield return new WaitForSeconds(0.2f);
+        PhotonNetwork.IsMessageQueueRunning = true;
     }
 
     private void CreateTank()
