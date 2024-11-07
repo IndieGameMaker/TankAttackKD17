@@ -28,8 +28,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 방장이 씬을 로딩했을 때 다른 유저들에 자동으로 씬을 로딩 시켜주는 옵션
         PhotonNetwork.AutomaticallySyncScene = true;
 
-        // 포톤 서버에 접속 요청
-        PhotonNetwork.ConnectUsingSettings();
+        if (!PhotonNetwork.IsConnected)
+        {
+            // 포톤 서버에 접속 요청
+            PhotonNetwork.ConnectUsingSettings();
+        }
     }
 
     private void Start()

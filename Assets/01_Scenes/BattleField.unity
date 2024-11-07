@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c78e11d4ea4436d993b22d140747c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitButton: {fileID: 1468724080}
+  connectionInfoText: {fileID: 2132596586}
 --- !u!4 &224760470
 Transform:
   m_ObjectHideFlags: 0
