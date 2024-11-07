@@ -60,10 +60,12 @@ public class TankController : MonoBehaviour
 
         if (isFire)
         {
-            Fire();
+            //Fire();
+            pv.RPC(nameof(Fire), RpcTarget.AllViaServer);
         }
     }
 
+    [PunRPC]
     private void Fire()
     {
         Instantiate(cannonPrefab, firePos.position, firePos.rotation);
