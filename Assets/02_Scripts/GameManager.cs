@@ -1,11 +1,19 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
     private void Awake()
     {
+    }
+
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        CreateTank();
     }
 
     private void CreateTank()
