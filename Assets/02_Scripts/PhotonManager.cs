@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -95,6 +96,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     #endregion
 
     #region 포톤콜백함수
+    // 룸 목록이 변경되면 호출되는 콜백
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        foreach (var room in roomList)
+        {
+            Debug.Log($"{room.Name} : {room.PlayerCount} / {room.MaxPlayers}");
+        }
+    }
+
+
     // 포톤 서버에 접속되었을 때 호출되는 콜백(Callback)
     public override void OnConnectedToMaster()
     {
