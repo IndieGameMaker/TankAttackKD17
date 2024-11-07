@@ -10,6 +10,7 @@ public class Cannon : MonoBehaviour
     void Start()
     {
         GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * cannonDataSO.force);
+        Destroy(this.gameObject, 10.0f);
     }
 
     void OnCollisionEnter()

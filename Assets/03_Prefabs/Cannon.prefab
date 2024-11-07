@@ -222,5 +222,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797658c3c76b6438d9c0fbe1df76c3da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1500
-  expEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  cannonDataSO: {fileID: 11400000, guid: de1e03b9908014d0aaf7a135f2532f91, type: 2}
