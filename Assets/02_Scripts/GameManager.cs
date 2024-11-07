@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         string connectStr = $"{roomName} (<color=#00ff00>{currentPlayer}</color>/<color=#ff0000>{maxPlayers}</color>)";
         connectionInfoText.text = connectStr;
     }
-=
+
     private void OnExitButtonClick()
     {
         // 룸 Exit 요청
@@ -54,5 +54,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        DisplayConnectInfo();
+        Debug.Log(newPlayer.NickName);
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        DisplayConnectInfo();
+        Debug.Log(otherPlayer.NickName);
     }
 }
