@@ -68,6 +68,6 @@ public class TankController : MonoBehaviour
     private void Fire()
     {
         Instantiate(cannonPrefab, firePos.position, firePos.rotation);
-        audio.PlayOneShot(fireSfx, 0.8f);
+        audio?.PlayOneShot(fireSfx, 0.8f);
     }
 }
