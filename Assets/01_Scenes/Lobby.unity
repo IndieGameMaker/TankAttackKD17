@@ -2014,12 +2014,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429605952}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9be0a9b3b4ead4107a4085c005fb60c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickName: Zack
+  nickNameIF: {fileID: 1044815268}
+  roomNameIF: {fileID: 1538693583}
+  loginButton: {fileID: 43863538}
+  makeRoomButton: {fileID: 1427084233}
 --- !u!4 &1429605954
 Transform:
   m_ObjectHideFlags: 0

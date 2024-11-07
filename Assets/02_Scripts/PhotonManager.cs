@@ -32,6 +32,20 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    private void Start()
+    {
+        // 버튼 이벤트 연결
+        loginButton.onClick.AddListener(() => OnLoginButtonClick());
+    }
+
+    #region UI 콜백 함수
+    private void OnLoginButtonClick()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+    #endregion
+
+    #region 포톤콜백함수
     // 포톤 서버에 접속되었을 때 호출되는 콜백(Callback)
     public override void OnConnectedToMaster()
     {
@@ -45,7 +59,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("로비 입장 완료");
         // 랜덤한 방에 입장을 요청
-        PhotonNetwork.JoinRandomRoom();
+        // PhotonNetwork.JoinRandomRoom();
     }
 
     // 랜덤 방입장 실패 했을 때 호출되는 콜백
@@ -85,4 +99,5 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         // 전투 씬으로 이동처리
     }
+    #endregion
 }
