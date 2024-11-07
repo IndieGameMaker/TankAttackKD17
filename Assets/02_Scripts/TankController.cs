@@ -9,6 +9,7 @@ using System;
 using UnityEngine;
 using Photon.Pun;
 using Unity.Cinemachine;
+using TMPro;
 
 public class TankController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class TankController : MonoBehaviour
     [SerializeField] private GameObject cannonPrefab;
     [SerializeField] private Transform firePos;
     [SerializeField] private AudioClip fireSfx;
+
+    private TMP_Text nickNameText;
 
     private float v => Input.GetAxis("Vertical");
     private float h => Input.GetAxis("Horizontal");
@@ -39,6 +42,7 @@ public class TankController : MonoBehaviour
         pv = GetComponent<PhotonView>();
         audio = GetComponent<AudioSource>();
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+        nickNameText = transform.Find("Canvas/Panel/Text - NickName").GetComponent<TMP_Text>();
 
         rb.isKinematic = !pv.IsMine;
 
@@ -47,7 +51,8 @@ public class TankController : MonoBehaviour
             cinemachineCamera.Target.TrackingTarget = tr;
         }
 
-
+        // 닉네임 설정
+        nickNameText.text = pv.Owner.NickName;
     }
 
     void Update()
