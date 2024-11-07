@@ -22,4 +22,9 @@ public class RoomData : MonoBehaviour
             roomText.text = $"{roomInfo.Name} : {roomInfo.PlayerCount} / {roomInfo.MaxPlayers}";
         }
     }
+
+    private void Awake()
+    {
+        roomText = GetComponentInChildren<TMP_Text>();
+    }
 }
