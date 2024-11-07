@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         yield return new WaitForSeconds(0.5f);
 
+        DisplayConnectInfo();
         CreateTank();
     }
 
