@@ -38,9 +38,24 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         loginButton.onClick.AddListener(() => OnLoginButtonClick());
     }
 
+    private void SetNickName()
+    {
+        // 닉네임이 비여있는지 확인
+        if (string.IsNullOrEmpty(nickNameIF.text))
+        {
+            nickName = $"USER_{Random.Range(0, 1001):0000}";
+            nickNameIF.text = nickName;
+        }
+        else
+        {
+            nickName = nickNameIF.text;
+        }
+    }
+
     #region UI 콜백 함수
     private void OnLoginButtonClick()
     {
+        PhotonNetwork.NickName = nickName;
         PhotonNetwork.JoinRandomRoom();
     }
     #endregion
