@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
+    public static PhotonManager Instance = null;
+
     // 게임 버전 1.0 , 1.1
     [SerializeField] private const string version = "1.0";
     // 유저명
@@ -26,6 +28,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        Instance = this;
+
         // 게임버전 설정
         PhotonNetwork.GameVersion = version;
         // 유저명 설정
@@ -51,7 +55,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         makeRoomButton.onClick.AddListener(() => OnMakeRoomButtonClick());
     }
 
-    private void SetNickName()
+    public void SetNickName()
     {
         // 닉네임이 비여있는지 확인
         if (string.IsNullOrEmpty(nickNameIF.text))
