@@ -53,6 +53,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         connectionInfoText.text = connectStr;
     }
 
+    public void SendMessageByRPC(string msg)
+    {
+        photonView.RPC(nameof(DisplayMessage), RpcTarget.AllBufferedViaServer, msg);
+    }
+
+    private void OnSendButtonClick()
+    {
+        string msg = $"<color=#00ff00>[{PhotonNetwork.NickName}]</color> {messageIF.text}";
+        SendMessageByRPC(msg);
+    }
+
+
     private void OnExitButtonClick()
     {
         // 룸 Exit 요청
@@ -78,6 +90,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         DisplayMessage(msg);
     }
 
+    [PunRPC]
     private void DisplayMessage(string msg)
     {
         messageListText.text += $"{msg}\n";
