@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         exitButton.onClick.AddListener(() => OnExitButtonClick());
         sendButton.onClick.AddListener(() => OnSendButtonClick());
+        messageIF.onEndEdit.AddListener((inputMessage) => SendMessageByRPC(inputMessage));
 
         yield return new WaitForSeconds(0.2f);
 

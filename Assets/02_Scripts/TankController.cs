@@ -12,6 +12,7 @@ using Unity.Cinemachine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class TankController : MonoBehaviour
 {
@@ -72,7 +73,7 @@ public class TankController : MonoBehaviour
         tr.Translate(Vector3.forward * Time.deltaTime * v * moveSpeed);
         tr.Rotate(Vector3.up * Time.deltaTime * h * turnSpeed);
 
-        if (isFire)
+        if (isFire && !EventSystem.current.IsPointerOverGameObject())
         {
             //Fire();
             pv.RPC(nameof(Fire), RpcTarget.AllViaServer);
