@@ -30,6 +30,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Instance = this;
 
+        // 버튼 비활성
+        loginButton.interactable = false;
+        makeRoomButton.interactable = false;
+
         // 게임버전 설정
         PhotonNetwork.GameVersion = version;
         // 유저명 설정
@@ -143,10 +147,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
     }
 
-
     // 포톤 서버에 접속되었을 때 호출되는 콜백(Callback)
     public override void OnConnectedToMaster()
     {
+        loginButton.interactable = true;
+        makeRoomButton.interactable = true;
+
         Debug.Log("서버 접속 완료");
         // Lobby 접속 요청
         PhotonNetwork.JoinLobby();
