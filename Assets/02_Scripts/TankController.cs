@@ -13,6 +13,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using Photon.Realtime;
 
 public class TankController : MonoBehaviour
 {
@@ -95,12 +96,19 @@ public class TankController : MonoBehaviour
 
         if (coll.collider.CompareTag("CANNON"))
         {
-            Debug.Log(coll.gameObject.GetComponent<Cannon>().shooterId);
+            // ActorNumber -> NickName
+            int actorNumber = coll.gameObject.GetComponent<Cannon>().shooterId;
+            Player shooter = PhotonNetwork.CurrentRoom.GetPlayer(actorNumber);
+
             currHp -= 20;
             hpBar.fillAmount = (float)currHp / (float)initHp;
 
             if (currHp <= 0)
             {
+                string msg = $"<color=#00ff00>[{pv.Owner.NickName}]님은 "
+                + $"<color=#00ff00>[{shooter.NickName}]에게 피격당했습니다.";
+
+
                 TankDestroy();
             }
         }
