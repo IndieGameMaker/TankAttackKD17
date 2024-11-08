@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using Photon.Realtime;
 
-public class TankController : MonoBehaviour
+public class TankController : MonoBehaviourPunCallbacks
 {
     private Transform tr;
     private Rigidbody rb;
@@ -63,6 +63,18 @@ public class TankController : MonoBehaviour
 
         // 닉네임 설정
         nickNameText.text = pv.Owner.NickName;
+
+        InitPlayerScore();
+    }
+
+    // 플레이어의 점수를 초기화 및 커스텀 프로퍼티에 저장
+    void InitPlayerScore()
+    {
+        ExitGames.Client.Photon.Hashtable playerProperties = new ExitGames.Client.Photon.Hashtable();
+        playerProperties["KillCount"] = 0;
+
+        // 현재 플레이어에 사용자 정의 속성을 설정
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
 
     void Update()
@@ -103,10 +115,13 @@ public class TankController : MonoBehaviour
             currHp -= 20;
             hpBar.fillAmount = (float)currHp / (float)initHp;
 
+
             if (currHp <= 0)
             {
+
                 if (pv.IsMine)
                 {
+                    IncreaseKillCount(shooter);
                     string msg = $"<color=#00ff00>[{pv.Owner.NickName}]</color>님은 "
                     + $"<color=#ff0000>[{shooter.NickName}]</color>에게 피격당했습니다.";
 
@@ -114,6 +129,33 @@ public class TankController : MonoBehaviour
                 }
 
                 TankDestroy();
+            }
+        }
+    }
+
+    // 킬 카운트 증가
+    private void IncreaseKillCount(Player shooter)
+    {
+        // 나를 죽인 상대방의 킬 카운트를 증가
+        int killCount = (int)shooter.CustomProperties["KillCount"];
+
+        shooter.SetCustomProperties(new ExitGames.Client.Photon.Hashtable()
+        {
+            {"KillCount", killCount + 1}
+        });
+    }
+
+    // 커스텀 속성이 변경되었을 때 호출되는 콜백 함수
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        if (targetPlayer == pv.Owner)
+        {
+            // 킬 카운트가 변경되었을 때
+            if (changedProps.ContainsKey("KillCount"))
+            {
+                int killCount = (int)changedProps["KillCount"];
+                Debug.Log($"킬 카운트 : {killCount}");
+                tr.Find("Canvas/Panel/Text - NickName").GetComponent<TMP_Text>().text = $"{pv.Owner.NickName} KILL : {killCount}";
             }
         }
     }

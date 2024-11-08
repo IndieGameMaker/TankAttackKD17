@@ -218,33 +218,37 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // 방 입장 완료 콜백
     public override void OnJoinedRoom()
     {
-        // 커스텀 프로퍼티 불러오기
-        var roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
-        Map _map = (Map)roomProperties["map"];
-        Difficulty _difficulty = (Difficulty)roomProperties["difficulty"];
-
-        Debug.Log($"방 입장 완료 : {PhotonNetwork.CurrentRoom.Name}");
-
-        if (PhotonNetwork.IsMasterClient)
+        // 커스텀 프로퍼티가 있을 경우
+        if (PhotonNetwork.CurrentRoom.CustomProperties.Count > 0)
         {
-            switch (_map)
+            // 커스텀 프로퍼티 불러오기
+            var roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+            Map _map = (Map)roomProperties["map"];
+            Difficulty _difficulty = (Difficulty)roomProperties["difficulty"];
+
+            Debug.Log($"방 입장 완료 : {PhotonNetwork.CurrentRoom.Name}");
+
+            if (PhotonNetwork.IsMasterClient)
             {
-                case Map.FOREST:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField");
-                    break;
-                case Map.DESERT:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField2");
-                    break;
-                case Map.CITY:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField3");
-                    break;
+                switch (_map)
+                {
+                    case Map.FOREST:
+                        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField");
+                        break;
+                    case Map.DESERT:
+                        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField2");
+                        break;
+                    case Map.CITY:
+                        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField3");
+                        break;
+                }
             }
+
+            // PhotonNetwork.Instantiate("Tank", new Vector3(0, 5.0f, 0), Quaternion.identity, 0)
+
+
+            // 전투 씬으로 이동처리
         }
-
-        // PhotonNetwork.Instantiate("Tank", new Vector3(0, 5.0f, 0), Quaternion.identity, 0);
-
-
-        // 전투 씬으로 이동처리
     }
     #endregion
 }
