@@ -245,9 +245,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             }
 
             // PhotonNetwork.Instantiate("Tank", new Vector3(0, 5.0f, 0), Quaternion.identity, 0)
-
-
-            // 전투 씬으로 이동처리
         }
     }
     #endregion
