@@ -9,8 +9,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     [Header("UI")]
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button sendButton;
 
     [SerializeField] private TMP_Text connectionInfoText;
+    [SerializeField] private TMP_Text messageListText;
+
+    [SerializeField] private TMP_InputField messageIF;
 
     private void Awake()
     {
