@@ -67,14 +67,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         DisplayConnectInfo();
-        string msg = $"<color=#00ff00>[{newPlayer}]</color>님이 입장했습니다.";
+        string msg = $"<color=#00ff00>[{newPlayer.NickName}]</color>님이 입장했습니다.";
         DisplayMessage(msg);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         DisplayConnectInfo();
-        string msg = $"<color=#ff0000>[{otherPlayer}]</color>님이 퇴장했습니다.";
+        string msg = $"<color=#ff0000>[{otherPlayer.NickName}]</color>님이 퇴장했습니다.";
         DisplayMessage(msg);
     }
 
