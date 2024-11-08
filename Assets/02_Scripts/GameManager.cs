@@ -25,7 +25,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         exitButton.onClick.AddListener(() => OnExitButtonClick());
         sendButton.onClick.AddListener(() => OnSendButtonClick());
-        messageIF.onEndEdit.AddListener((inputMessage) => SendMessageByRPC(inputMessage));
+        messageIF.onEndEdit.AddListener((inputMessage) =>
+        {
+            string msg = $"<color=#00ff00>[{PhotonNetwork.NickName}]</color> {inputMessage}";
+            SendMessageByRPC(msg);
+        }
+        );
 
         yield return new WaitForSeconds(0.2f);
 
