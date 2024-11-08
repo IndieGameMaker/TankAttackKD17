@@ -7,6 +7,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public static GameManager Instance = null;
+
     [Header("UI")]
     [SerializeField] private Button exitButton;
     [SerializeField] private Button sendButton;
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        Instance = this;
         PhotonNetwork.IsMessageQueueRunning = false;
     }
 
