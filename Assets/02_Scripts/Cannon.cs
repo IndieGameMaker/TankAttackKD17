@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
     [SerializeField] private CannonDataSO cannonDataSO;
 
-    // [SerializeField] private float force = 1500.0f;
-    // [SerializeField] private GameObject expEffect;
+    // Shooter ID
+    [NonSerialized]
+    [HideInInspector]
+    public int shooterId;
 
     void Start()
     {

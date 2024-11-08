@@ -76,14 +76,16 @@ public class TankController : MonoBehaviour
         if (isFire && !EventSystem.current.IsPointerOverGameObject())
         {
             //Fire();
-            pv.RPC(nameof(Fire), RpcTarget.AllViaServer);
+            pv.RPC(nameof(Fire), RpcTarget.AllViaServer, pv.Owner.ActorNumber);
         }
     }
 
     [PunRPC]
-    private void Fire()
+    private void Fire(int shooterId)
     {
-        Instantiate(cannonPrefab, firePos.position, firePos.rotation);
+        var _cannon = Instantiate(cannonPrefab, firePos.position, firePos.rotation);
+        _cannon.GetComponent<Cannon>().shooterId = shooterId;
+
         audio?.PlayOneShot(fireSfx, 0.8f);
     }
 
