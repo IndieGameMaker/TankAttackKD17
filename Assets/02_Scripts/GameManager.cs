@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] private TMP_InputField messageIF;
 
+    [SerializeField] PhotonManager.Map map;
+    [SerializeField] PhotonManager.Difficulty difficulty;
+
     private void Awake()
     {
         Instance = this;
-        PhotonNetwork.IsMessageQueueRunning = false;
     }
 
     IEnumerator Start()
@@ -39,12 +41,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(0.2f);
 
         CreateTank();
-
-        yield return new WaitForSeconds(0.2f);
-        PhotonNetwork.IsMessageQueueRunning = true;
-
         DisplayConnectInfo();
         DisplayPlayerList();
+
+        // 커스텀 프로퍼티 로드
+        var roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+
+        map = (PhotonManager.Map)roomProperties["map"];
+        difficulty = (PhotonManager.Difficulty)roomProperties["difficulty"];
     }
 
     private void CreateTank()
