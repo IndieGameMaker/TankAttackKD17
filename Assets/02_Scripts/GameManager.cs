@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     IEnumerator Start()
     {
         exitButton.onClick.AddListener(() => OnExitButtonClick());
+        sendButton.onClick.AddListener(() => OnSendButtonClick());
 
         yield return new WaitForSeconds(0.2f);
 
