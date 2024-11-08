@@ -107,8 +107,8 @@ public class TankController : MonoBehaviour
             {
                 if (pv.IsMine)
                 {
-                    string msg = $"<color=#00ff00>[{pv.Owner.NickName}]님은 "
-                    + $"<color=#ff0000>[{shooter.NickName}]에게 피격당했습니다.";
+                    string msg = $"<color=#00ff00>[{pv.Owner.NickName}]</color>님은 "
+                    + $"<color=#ff0000>[{shooter.NickName}]</color>에게 피격당했습니다.";
 
                     GameManager.Instance.SendMessageByRPC(msg);
                 }
