@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField] private TMP_Text connectionInfoText;
     [SerializeField] private TMP_Text messageListText;
+    [SerializeField] private TMP_Text playerListText;
 
     [SerializeField] private TMP_InputField messageIF;
 
