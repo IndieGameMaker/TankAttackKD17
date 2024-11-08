@@ -95,6 +95,7 @@ public class TankController : MonoBehaviour
 
         if (coll.collider.CompareTag("CANNON"))
         {
+            Debug.Log(coll.gameObject.GetComponent<Cannon>().shooterId);
             currHp -= 20;
             hpBar.fillAmount = (float)currHp / (float)initHp;
 
