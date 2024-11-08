@@ -446,6 +446,7 @@ MonoBehaviour:
   sendButton: {fileID: 2127901263}
   connectionInfoText: {fileID: 2132596586}
   messageListText: {fileID: 1680262597}
+  playerListText: {fileID: 1562984398}
   messageIF: {fileID: 754693783}
 --- !u!4 &224760470
 Transform:

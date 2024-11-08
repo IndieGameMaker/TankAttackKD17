@@ -38,11 +38,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         yield return new WaitForSeconds(0.2f);
 
-        DisplayConnectInfo();
         CreateTank();
 
         yield return new WaitForSeconds(0.2f);
         PhotonNetwork.IsMessageQueueRunning = true;
+
+        DisplayConnectInfo();
+        DisplayPlayerList();
     }
 
     private void CreateTank()
@@ -62,6 +64,19 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         string connectStr = $"{roomName} (<color=#00ff00>{currentPlayer}</color>/<color=#ff0000>{maxPlayers}</color>)";
         connectionInfoText.text = connectStr;
+    }
+
+    private void DisplayPlayerList()
+    {
+        string playerList = "";
+
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            string _color = player.IsMasterClient ? "#ff0000" : "#00ff00";
+            playerList += $"<color={_color}>{player.NickName}</color>\n";
+        }
+
+        playerListText.text = playerList;
     }
 
     public void SendMessageByRPC(string msg)
@@ -90,6 +105,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         DisplayConnectInfo();
+        DisplayPlayerList();
+
         string msg = $"<color=#00ff00>[{newPlayer.NickName}]</color>님이 입장했습니다.";
         DisplayMessage(msg);
     }
@@ -97,6 +114,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         DisplayConnectInfo();
+        DisplayPlayerList();
+
         string msg = $"<color=#ff0000>[{otherPlayer.NickName}]</color>님이 퇴장했습니다.";
         DisplayMessage(msg);
     }
