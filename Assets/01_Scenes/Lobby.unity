@@ -2758,6 +2758,8 @@ MonoBehaviour:
   makeRoomButton: {fileID: 1427084233}
   roomPrefab: {fileID: 8643440456323143018, guid: 7a75d3c5b0e2445b6878ff4608ed0115, type: 3}
   contentTr: {fileID: 1367324689}
+  map: 1
+  difficulty: 0
 --- !u!4 &1429605954
 Transform:
   m_ObjectHideFlags: 0

@@ -10,12 +10,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 {
     public enum Map
     {
-        FOREST, DESERT, CITY
+        FOREST = (byte)0, DESERT, CITY
     }
 
     public enum Difficulty
     {
-        EASY, NORMAL, HARD, NIGHTMARE
+        EASY = (byte)0, NORMAL, HARD, NIGHTMARE
     }
 
     public static PhotonManager Instance = null;
@@ -120,8 +120,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 룸의 커스텀 프로퍼티 설정
         Hashtable customRoomProperties = new Hashtable()
         {
-            {"map", (byte)map},
-            {"difficulty", (byte)difficulty}
+            {"map", map},
+            {"difficulty", difficulty}
         };
 
         roomOptions.CustomRoomProperties = customRoomProperties;
