@@ -4,9 +4,20 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
+    public enum Map
+    {
+        FOREST, DESERT, CITY
+    }
+
+    public enum Difficulty
+    {
+        EASY, NORMAL, HARD, NIGHTMARE
+    }
+
     public static PhotonManager Instance = null;
 
     // 게임 버전 1.0 , 1.1
@@ -26,6 +37,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject roomPrefab;
     [SerializeField] private Transform contentTr;
 
+    [Header("Room Options")]
+    [SerializeField] private Map map;
+    [SerializeField] private Difficulty difficulty;
+
     private void Awake()
     {
         Instance = this;
@@ -33,6 +48,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         // 버튼 비활성
         loginButton.interactable = false;
         makeRoomButton.interactable = false;
+
+        PhotonNetwork.SendRate = 30;
 
         // 게임버전 설정
         PhotonNetwork.GameVersion = version;
@@ -97,8 +114,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             MaxPlayers = 20,
             IsOpen = true,
-            IsVisible = true
+            IsVisible = true,
         };
+
+        // 룸의 커스텀 프로퍼티 설정
+        Hashtable customRoomProperties = new Hashtable()
+        {
+            {"map", (byte)map},
+            {"difficulty", (byte)difficulty}
+        };
+
+        roomOptions.CustomRoomProperties = customRoomProperties;
+
         // 룸 생성
         PhotonNetwork.CreateRoom(roomNameIF.text, roomOptions);
     }
@@ -191,11 +218,27 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // 방 입장 완료 콜백
     public override void OnJoinedRoom()
     {
+        // 커스텀 프로퍼티 불러오기
+        var roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+        Map _map = (Map)roomProperties["map"];
+        Difficulty _difficulty = (Difficulty)roomProperties["difficulty"];
+
         Debug.Log($"방 입장 완료 : {PhotonNetwork.CurrentRoom.Name}");
 
         if (PhotonNetwork.IsMasterClient)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField");
+            switch (_map)
+            {
+                case Map.FOREST:
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField");
+                    break;
+                case Map.DESERT:
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField2");
+                    break;
+                case Map.CITY:
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("BattleField3");
+                    break;
+            }
         }
 
         // PhotonNetwork.Instantiate("Tank", new Vector3(0, 5.0f, 0), Quaternion.identity, 0);
