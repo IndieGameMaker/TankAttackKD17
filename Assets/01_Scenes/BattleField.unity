@@ -199,8 +199,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a4d97b2ba20ba4025906950581914ce6, type: 2}
+  m_sharedMaterial: {fileID: 4661086126831284521, guid: a4d97b2ba20ba4025906950581914ce6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -335,8 +335,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a4d97b2ba20ba4025906950581914ce6, type: 2}
+  m_sharedMaterial: {fileID: 4661086126831284521, guid: a4d97b2ba20ba4025906950581914ce6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -442,7 +442,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitButton: {fileID: 1468724080}
+  sendButton: {fileID: 2127901263}
   connectionInfoText: {fileID: 2132596586}
+  messageListText: {fileID: 1680262597}
+  messageIF: {fileID: 754693783}
 --- !u!4 &224760470
 Transform:
   m_ObjectHideFlags: 0
@@ -956,7 +959,7 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: a4d97b2ba20ba4025906950581914ce6, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_KeepTextSelectionVisible: 0
@@ -1690,8 +1693,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a4d97b2ba20ba4025906950581914ce6, type: 2}
+  m_sharedMaterial: {fileID: 4661086126831284521, guid: a4d97b2ba20ba4025906950581914ce6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
